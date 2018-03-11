@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aryabenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/05 12:57:54 by aryabenk          #+#    #+#             */
-/*   Updated: 2018/03/05 12:57:55 by aryabenk         ###   ########.fr       */
+/*   Created: 2017/11/03 17:10:52 by aryabenk          #+#    #+#             */
+/*   Updated: 2017/11/03 17:10:53 by aryabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <locale.h>
-#include "./printf/ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int k;
+	size_t	i;
+	size_t	j;
+	char	*res;
 
-    //setlocale (LC_ALL,"");
-	printf("~ret = %d\n", ft_printf("%S", L"àпьпрьпь"));
-	printf("!ret = %d\n", printf("%S", L"Lalalala, 100% des gens qui parlent à Ly adorent Ly. Ou Presque. 2, 10, 2710, "));
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	res = (char*)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)));
+	if (res == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		res[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j])
+	{
+		res[i] = s2[j];
+		i++;
+		j++;
+	}
+	res[i] = '\0';
+	return (res);
 }

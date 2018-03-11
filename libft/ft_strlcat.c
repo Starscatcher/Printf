@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aryabenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/05 12:57:54 by aryabenk          #+#    #+#             */
-/*   Updated: 2018/03/05 12:57:55 by aryabenk         ###   ########.fr       */
+/*   Created: 2017/10/30 14:08:07 by aryabenk          #+#    #+#             */
+/*   Updated: 2017/10/30 14:08:08 by aryabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <locale.h>
-#include "./printf/ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	int k;
+	size_t len;
 
-    //setlocale (LC_ALL,"");
-	printf("~ret = %d\n", ft_printf("%S", L"àпьпрьпь"));
-	printf("!ret = %d\n", printf("%S", L"Lalalala, 100% des gens qui parlent à Ly adorent Ly. Ou Presque. 2, 10, 2710, "));
+	len = ft_strlen(dst);
+	if (dstsize > len)
+		ft_strncat(dst, src, (dstsize - len - 1));
+	if (dstsize < len)
+		return (ft_strlen(src) + dstsize);
+	else
+		return (ft_strlen(src) + len);
 }

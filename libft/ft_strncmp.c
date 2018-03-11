@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aryabenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/05 12:57:54 by aryabenk          #+#    #+#             */
-/*   Updated: 2018/03/05 12:57:55 by aryabenk         ###   ########.fr       */
+/*   Created: 2017/10/30 15:36:50 by aryabenk          #+#    #+#             */
+/*   Updated: 2017/10/30 15:36:51 by aryabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <locale.h>
-#include "./printf/ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int k;
+	size_t	i;
 
-    //setlocale (LC_ALL,"");
-	printf("~ret = %d\n", ft_printf("%S", L"àпьпрьпь"));
-	printf("!ret = %d\n", printf("%S", L"Lalalala, 100% des gens qui parlent à Ly adorent Ly. Ou Presque. 2, 10, 2710, "));
+	i = 0;
+	if (s1[i] == '\0' && s2[i] == '\0')
+		return (0);
+	if (n == 0)
+		return (0);
+	while (s1[i] == s2[i] && i < n && s1[i] && s2[i])
+	{
+		i++;
+		if (i >= n)
+			return (0);
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aryabenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/05 12:57:54 by aryabenk          #+#    #+#             */
-/*   Updated: 2018/03/05 12:57:55 by aryabenk         ###   ########.fr       */
+/*   Created: 2017/11/03 11:31:22 by aryabenk          #+#    #+#             */
+/*   Updated: 2017/11/03 11:31:23 by aryabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <locale.h>
-#include "./printf/ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int k;
+	unsigned char	*newdest;
+	unsigned char	*newsrc;
 
-    //setlocale (LC_ALL,"");
-	printf("~ret = %d\n", ft_printf("%S", L"àпьпрьпь"));
-	printf("!ret = %d\n", printf("%S", L"Lalalala, 100% des gens qui parlent à Ly adorent Ly. Ou Presque. 2, 10, 2710, "));
+	newdest = (unsigned char *)dst;
+	newsrc = (unsigned char *)src;
+	if (newsrc < newdest)
+	{
+		while (len--)
+			newdest[len] = newsrc[len];
+	}
+	else
+		ft_memcpy(newdest, newsrc, len);
+	return (dst);
 }

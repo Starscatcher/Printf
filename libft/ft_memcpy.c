@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aryabenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/05 12:57:54 by aryabenk          #+#    #+#             */
-/*   Updated: 2018/03/05 12:57:55 by aryabenk         ###   ########.fr       */
+/*   Created: 2017/10/26 11:13:45 by aryabenk          #+#    #+#             */
+/*   Updated: 2017/10/26 11:13:46 by aryabenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <locale.h>
-#include "./printf/ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int k;
+	char	*bla1;
+	char	*bla2;
+	size_t	j;
 
-    //setlocale (LC_ALL,"");
-	printf("~ret = %d\n", ft_printf("%S", L"àпьпрьпь"));
-	printf("!ret = %d\n", printf("%S", L"Lalalala, 100% des gens qui parlent à Ly adorent Ly. Ou Presque. 2, 10, 2710, "));
+	j = 0;
+	if (n == 0 || dst == src)
+		return (dst);
+	bla1 = (char*)dst;
+	bla2 = (char*)src;
+	while (n > 0)
+	{
+		bla1[j] = bla2[j];
+		j++;
+		n--;
+	}
+	return (dst);
 }
