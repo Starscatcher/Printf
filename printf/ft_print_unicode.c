@@ -14,11 +14,8 @@
 
 int		ft_ret_size(int ret, int size)
 {
-<<<<<<< HEAD
 	if (MB_CUR_MAX <= 1)
 		return (1);
-=======
->>>>>>> e4eb16f9a377f5f5443042db2dad0a093fb593b1
 	ret = size <= 7 ? 1 : ret;
 	ret = size > 7 && size <= 11 ? 2 : ret;
 	ret = size > 11 && size <= 16 ? 3 : ret;

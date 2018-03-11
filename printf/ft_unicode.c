@@ -87,13 +87,9 @@ void	ft_unisize(wchar_t i)
 	base = ft_itoa_bss(i, 2);
 	size = ft_strlen(base);
 	ft_strdel(&base);
-<<<<<<< HEAD
 	if (MB_CUR_MAX <= 1)
 		write(1, &i, 1);
 	else if (size <= 7)
-=======
-	if (size <= 7)
->>>>>>> e4eb16f9a377f5f5443042db2dad0a093fb593b1
 		ft_undersev(v, octet);
 	else if (size <= 11)
 		ft_underele(v, octet);
