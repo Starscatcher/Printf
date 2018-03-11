@@ -61,7 +61,7 @@ void				ft_charsize(t_key *key);
 void				ft_print_char(t_key *key);
 t_key				*ft_make_struct(void);
 void				ft_unicharprint(t_key *key);
-void				ft_bef_float(double num, t_key *key);
+void				ft_bef_float(long double num, t_key *key);
 void				ft_uniprint(t_key *key);
 void				ft_unisize(wchar_t i);
 void				ft_modifyint(t_key *key);
