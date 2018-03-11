@@ -80,7 +80,7 @@ void	ft_float_size(t_key *key)
 
 	if (!key->res)
 		key->res = ft_strdup("0.0");
-	size = key->p > 0 ? 1 : 0;
+	size = key->p != 0 ? 1 : 0;
 	j = key->res[0] == '-' ? 1 : 0;
 	len = ft_strlen(key->res) - j;
 	key->fpsize = key->p == -1 ? 6 : key->p;
