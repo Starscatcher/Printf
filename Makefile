@@ -36,7 +36,7 @@ LIB_SRC = 	ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o \
 
 PRF_SRC = 	ft_charmod.o ft_create_struct.o ft_float.o ft_intmod.o ft_itoa_base.o \
 			ft_modify.o ft_print_unicode.o ft_printf.o ft_read_args.o ft_read_flags.o \
-			ft_unicode.o
+			ft_unicode.o ft_float_size.o
 
 COMPILED =	$(LIB_SRC) $(PRF_SRC)
 

@@ -12,12 +12,59 @@
 
 #include "ft_printf.h"
 
-void	ft_aft_float(long double num, t_key *key, int i)
+static	void		ft_around(t_key *key, int *i, int *diff)
+{
+	char	*zero;
+
+	while (key->res[*i] == '9' || key->res[*i] == '.')
+	{
+		if (key->res[*i] == '.')
+			--*i;
+		if (key->res[*i] == '9' || key->res[*i] == '.')
+		{
+			key->res[*i] = '0';
+			if (*i != 0)
+				--*i;
+		}
+		if (*i == 0 && key->res[*i] != '9')
+		{
+			zero = ft_strjoin("0", key->res);
+			ft_strdel(&key->res);
+			key->res = zero;
+			key->finsize++;
+		}
+	}
+	*diff = key->res[*i] - '0';
+	++*diff;
+}
+
+static	void		ft_prec_float(t_key *key, int i, long double num)
 {
 	int	prec;
 	int val;
 	int diff;
-    char    *zero;
+
+	i = ft_strlen(key->res);
+	prec = key->p == -1 ? 6 : key->p;
+	key->res = ft_realloc(key->res, i + prec + 1);
+	key->res[i++] = '.';
+	while (prec-- > 0)
+	{
+		num *= 10;
+		val = (int)num;
+		num -= val;
+		key->res[i++] = val + '0';
+	}
+	diff = key->res[--i] - '0';
+	if (diff >= 5)
+		ft_around(key, &i, &diff);
+	key->res[i] = diff + '0';
+}
+
+static	void		ft_aft_float(long double num, t_key *key, int i)
+{
+	int	prec;
+	int val;
 
 	if (key->p == 0)
 	{
@@ -31,71 +78,27 @@ void	ft_aft_float(long double num, t_key *key, int i)
 		key->res[i] = prec + '0';
 	}
 	else
-	{
-		i = ft_strlen(key->res);
-		prec = key->p == -1 ? 6 : key->p;
-		key->res = ft_realloc(key->res, i + prec + 1);
-		key->res[i++] = '.';
-		while (prec-- > 0)
-		{
-			num *= 10;
-			val = (int)num;
-			num -= val;
-			key->res[i++] = val + '0';
-		}
-		diff = key->res[--i] - '0';
-		if (diff >= 5)
-		{
-			while (key->res[i] == '9' || key->res[i] == '.')
-			{
-                if (key->res[i] == '.')
-                    i--;
-                if (key->res[i] == '9' || key->res[i] == '.')
-                {
-                    key->res[i] = '0';
-                    if (i != 0)
-                        i--;
-                }
-                if (i == 0)
-                {
-                    zero = ft_strdup("0");
-                    zero = ft_strcat(zero, key->res);
-                    ft_strdel(&key->res);
-                    key->res = zero;
-                    key->finsize++;
-                }
-			}
-            diff = key->res[i] - '0';
-			diff++;
-		}
-		key->res[i] = diff + '0';
-	}
+		ft_prec_float(key, i, num);
 }
 
-void	ft_float_size(t_key *key)
+static	long double	ft_fmake(int count, long double num1, t_key *key, int i)
 {
-	int size;
-	int len;
-	int j;
+	int			elem;
 
-	if (!key->res)
-		key->res = ft_strdup("0.0");
-	size = key->p != 0 ? 1 : 0;
-	j = key->res[0] == '-' ? 1 : 0;
-	len = ft_strlen(key->res) - j;
-	key->fpsize = key->p == -1 ? 6 : key->p;
-	size += key->fpsize + len;
-	key->wsize = key->w - size > 0 ? key->w - size - len : 0;
-	size = key->wsize > 0 ? key->w : size;
-	key->wsize = j || key->flags->s ? 1 : 0;
-	key->finsize = size + key->wsize;
+	while (count-- > 0)
+	{
+		num1 *= 10;
+		elem = (int)num1;
+		num1 -= elem;
+		key->res[i++] = elem + '0';
+	}
+	return (num1);
 }
 
-void	ft_bef_float(long double num, t_key *key)
+void				ft_bef_float(long double num, t_key *key)
 {
 	long double	num1;
 	int			count;
-	int			elem;
 	int			i;
 
 	count = num > 0 ? 0 : 1;
@@ -112,13 +115,7 @@ void	ft_bef_float(long double num, t_key *key)
 		key->res[i++] = '-';
 		count--;
 	}
-	while (count-- > 0)
-	{
-		num1 *= 10;
-		elem = (int)num1;
-		num1 -= elem;
-		key->res[i++] = elem + '0';
-	}
+	num1 = ft_fmake(count, num1, key, i);
 	ft_float_size(key);
 	key->final = ft_strnew(key->finsize);
 	ft_aft_float(num1, key, 0);

@@ -16,7 +16,7 @@ int		ft_find_i(const char *format, int i, t_key *key)
 {
 	if (key->res && key->s != 's' && key->s != 'S')
 		ft_strdel(&key->res);
-	if (key->final && key->s != 's' && key->s != 'S')
+	if (key->final)
 		ft_strdel(&key->final);
 	free(key->flags);
 	free(key->len);

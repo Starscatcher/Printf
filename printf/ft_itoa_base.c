@@ -31,7 +31,7 @@ char	*ft_itoa_bss(ssize_t val, int b)
 	int		size;
 	char	*bla;
 
-	bla = ft_strdup("0123456789abcdef");
+	bla = "0123456789abcdef";
 	size = 1;
 	size = val < 0 && b == 10 ? size + 1 : size;
 	newval = val < 0 && b == 10 ? -val : val;
@@ -59,7 +59,7 @@ char	*ft_itoa_bs(size_t val, int b)
 	int		size;
 	char	*bla;
 
-	bla = ft_strdup("0123456789abcdef");
+	bla = "0123456789abcdef";
 	size = 1;
 	newval = val;
 	size = ft_find_size(newval, size, b, &res);

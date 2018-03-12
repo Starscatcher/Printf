@@ -1,3 +1,0 @@
-/home/anastasia/Desktop/printf/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/anastasia/Desktop/printf/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/anastasia/Desktop/printf/cmake-build-debug/CMakeFiles/printf.dir

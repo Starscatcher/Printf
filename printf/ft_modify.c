@@ -25,7 +25,7 @@ void	ft_modify_else(t_key *key)
 		{
 			ft_charsize(key);
 			key->final = ft_strnew(key->finsize);
-			ft_modifychar(key); 
+			ft_modifychar(key);
 		}
 		else
 			ft_uniprint(key);
