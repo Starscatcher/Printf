@@ -9,22 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dac4b43f-4983-4e74-be59-34a898fb5186" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Makefile" afterPath="$PROJECT_DIR$/Makefile" />
-      <change beforePath="$PROJECT_DIR$/main.c" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/printf/ft_create_struct.c" afterPath="$PROJECT_DIR$/printf/ft_create_struct.c" />
-      <change beforePath="$PROJECT_DIR$/printf/ft_float.c" afterPath="$PROJECT_DIR$/printf/ft_float.c" />
-      <change beforePath="$PROJECT_DIR$/printf/ft_intmod.c" afterPath="$PROJECT_DIR$/printf/ft_intmod.c" />
-      <change beforePath="$PROJECT_DIR$/printf/ft_itoa_base.c" afterPath="$PROJECT_DIR$/printf/ft_itoa_base.c" />
-      <change beforePath="$PROJECT_DIR$/printf/ft_modify.c" afterPath="$PROJECT_DIR$/printf/ft_modify.c" />
-      <change beforePath="$PROJECT_DIR$/printf/ft_print_unicode.c" afterPath="$PROJECT_DIR$/printf/ft_print_unicode.c" />
-      <change beforePath="$PROJECT_DIR$/printf/ft_printf.c" afterPath="$PROJECT_DIR$/printf/ft_printf.c" />
-      <change beforePath="$PROJECT_DIR$/printf/ft_printf.h" afterPath="$PROJECT_DIR$/printf/ft_printf.h" />
-      <change beforePath="$PROJECT_DIR$/printf/ft_read_args.c" afterPath="$PROJECT_DIR$/printf/ft_read_args.c" />
-      <change beforePath="$PROJECT_DIR$/printf/ft_read_flags.c" afterPath="$PROJECT_DIR$/printf/ft_read_flags.c" />
-      <change beforePath="$PROJECT_DIR$/printf/ft_unicode.c" afterPath="$PROJECT_DIR$/printf/ft_unicode.c" />
-    </list>
+    <list default="true" id="dac4b43f-4983-4e74-be59-34a898fb5186" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -90,8 +75,8 @@
       <file leaf-file-name="ft_colour.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/printf/ft_colour.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+            <state relative-caret-position="75">
+              <caret line="5" column="80" lean-forward="true" selection-start-line="5" selection-start-column="80" selection-end-line="5" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -256,12 +241,12 @@
       <workItem from="1520941684931" duration="76000" />
       <workItem from="1520941771163" duration="402000" />
       <workItem from="1520942198563" duration="942000" />
-      <workItem from="1520945160737" duration="5798000" />
+      <workItem from="1520945160737" duration="6247000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22557000" />
+    <option name="totallyTimeSpent" value="23006000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="366" y="23" width="1569" height="1325" extended-state="0" />
@@ -690,8 +675,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/printf/ft_colour.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state relative-caret-position="75">
+          <caret line="5" column="80" lean-forward="true" selection-start-line="5" selection-start-column="80" selection-end-line="5" selection-end-column="80" />
           <folding />
         </state>
       </provider>
