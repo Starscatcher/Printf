@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		ft_find_size(size_t newval, int size, int b, char **res)
+static	int		ft_find_size(size_t newval, int size, int b, char **res)
 {
 	while (newval >= (size_t)b)
 	{
@@ -23,7 +23,7 @@ int		ft_find_size(size_t newval, int size, int b, char **res)
 	return (size);
 }
 
-char	*ft_itoa_bss(ssize_t val, int b)
+char			*ft_itoa_bss(ssize_t val, int b)
 {
 	char	*res;
 	size_t	newval;
@@ -52,7 +52,7 @@ char	*ft_itoa_bss(ssize_t val, int b)
 	return (res);
 }
 
-char	*ft_itoa_bs(size_t val, int b)
+char			*ft_itoa_bs(size_t val, int b)
 {
 	char	*res;
 	size_t	newval;

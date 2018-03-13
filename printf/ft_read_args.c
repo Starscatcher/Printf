@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_di(t_key *key, va_list args)
+static	void	ft_di(t_key *key, va_list args)
 {
 	if (key->len->z)
 		key->res = ft_itoa_bss(va_arg(args, ssize_t), 10);
@@ -30,7 +30,7 @@ void	ft_di(t_key *key, va_list args)
 		key->res = ft_itoa_bss(va_arg(args, int), 10);
 }
 
-void	ft_uox(t_key *key, va_list args)
+static	void	ft_uox(t_key *key, va_list args)
 {
 	int s;
 
@@ -38,6 +38,8 @@ void	ft_uox(t_key *key, va_list args)
 		s = 16;
 	else if (ft_findin("oO", key->s))
 		s = 8;
+	else if (key->s == 'b')
+		s = 2;
 	else
 		s = 10;
 	if (key->len->z == 1)
@@ -56,13 +58,13 @@ void	ft_uox(t_key *key, va_list args)
 		key->res = ft_itoa_bs(va_arg(args, unsigned int), s);
 }
 
-void	ft_readtype(t_key *key, va_list args)
+void			ft_readtype(t_key *key, va_list args)
 {
 	if (ft_findin("DOU", key->s))
 		key->len->l = 1;
 	if (ft_findin("Ddi", key->s))
 		ft_di(key, args);
-	else if (ft_findin("oOuUxX", key->s))
+	else if (ft_findin("oOuUxXb", key->s))
 		ft_uox(key, args);
 	else if (key->s == 'c' && !key->len->l)
 		key->re = (char)va_arg(args, int);

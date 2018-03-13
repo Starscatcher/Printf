@@ -56,6 +56,7 @@ typedef struct		s_key
 	char		*final;
 }					t_key;
 
+int					ft_is_colour(const char *format, int i);
 void				ft_float_size(t_key *key);
 void				ft_modifychar(t_key *key);
 void				ft_charsize(t_key *key);

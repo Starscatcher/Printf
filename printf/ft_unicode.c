@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-void	ft_undersev(unsigned int v, unsigned char octet)
+static	void	ft_undersev(unsigned int v, unsigned char octet)
 {
 	octet = v;
 	write(1, &octet, 1);
 }
 
-void	ft_underele(unsigned int v, unsigned char octet)
+static	void	ft_underele(unsigned int v, unsigned char octet)
 {
 	unsigned int	mask1;
 	unsigned char	o2;
@@ -33,7 +33,7 @@ void	ft_underele(unsigned int v, unsigned char octet)
 	write(1, &octet, 1);
 }
 
-void	ft_undersix(unsigned int v, unsigned char octet)
+static	void	ft_undersix(unsigned int v, unsigned char octet)
 {
 	unsigned int	mask2;
 	unsigned char	o3;
@@ -52,7 +52,7 @@ void	ft_undersix(unsigned int v, unsigned char octet)
 	write(1, &octet, 1);
 }
 
-void	ft_moresix(unsigned int v, unsigned char octet)
+static	void	ft_moresix(unsigned int v, unsigned char octet)
 {
 	unsigned int	mask3;
 	unsigned char	o4;
@@ -75,7 +75,7 @@ void	ft_moresix(unsigned int v, unsigned char octet)
 	write(1, &octet, 1);
 }
 
-void	ft_unisize(wchar_t i)
+void			ft_unisize(wchar_t i)
 {
 	size_t			size;
 	unsigned int	v;

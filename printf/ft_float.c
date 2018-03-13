@@ -55,10 +55,14 @@ static	void		ft_prec_float(t_key *key, int i, long double num)
 		num -= val;
 		key->res[i++] = val + '0';
 	}
-	diff = key->res[--i] - '0';
+	i--;
+	num *= 10;
+	diff = (int)num;
 	if (diff >= 5)
+	{
 		ft_around(key, &i, &diff);
-	key->res[i] = diff + '0';
+		key->res[i] = diff + '0';
+	}
 }
 
 static	void		ft_aft_float(long double num, t_key *key, int i)

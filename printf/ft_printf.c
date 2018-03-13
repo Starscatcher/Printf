@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		ft_find_i(const char *format, int i, t_key *key)
+static	int		ft_find_i(const char *format, int i, t_key *key)
 {
 	if (key->res && key->s != 's' && key->s != 'S')
 		ft_strdel(&key->res);
@@ -26,14 +26,22 @@ int		ft_find_i(const char *format, int i, t_key *key)
 	return (++i);
 }
 
-int		ft_print_else(const char *format, int i, int *ret)
+static	int		ft_print_else(const char *format, int i, int *ret)
 {
-	write(1, &format[i++], 1);
-	*ret += 1;
+	int j;
+
+	j = i;
+	if (format[i] == '{')
+		i = ft_is_colour(format, i);
+	if (i == j)
+	{
+		write(1, &format[i++], 1);
+		*ret += 1;
+	}
 	return (i);
 }
 
-int		ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
 	va_list	args;
 	t_key	*key;
@@ -62,7 +70,7 @@ int		ft_printf(const char *format, ...)
 	return (ret);
 }
 
-int		ft_findin(char *arr, char elem)
+int				ft_findin(char *arr, char elem)
 {
 	int j;
 

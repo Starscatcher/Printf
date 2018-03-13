@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		ft_ret_size(int ret, int size)
+static	int		ft_ret_size(int ret, int size)
 {
 	if (MB_CUR_MAX <= 1)
 		return (1);
@@ -23,7 +23,7 @@ int		ft_ret_size(int ret, int size)
 	return (ret);
 }
 
-int		ft_unicharsize(t_key *key)
+int				ft_unicharsize(t_key *key)
 {
 	int		i;
 	int		ret;
@@ -50,7 +50,7 @@ int		ft_unicharsize(t_key *key)
 	return (i);
 }
 
-void	ft_unicharprint(t_key *key)
+void			ft_unicharprint(t_key *key)
 {
 	int		ret;
 	char	*base;
@@ -78,7 +78,7 @@ void	ft_unicharprint(t_key *key)
 	ft_strdel(&base);
 }
 
-void	ft_uniprint(t_key *key)
+void			ft_uniprint(t_key *key)
 {
 	int		i;
 	int		count;

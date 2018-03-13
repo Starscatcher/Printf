@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_make_struct_sec(t_key *key)
+static	void	ft_make_struct_sec(t_key *key)
 {
 	key->s = 0;
 	key->res = NULL;
@@ -25,7 +25,7 @@ void	ft_make_struct_sec(t_key *key)
 	key->wres = NULL;
 }
 
-t_key	*ft_make_struct(void)
+t_key			*ft_make_struct(void)
 {
 	t_key *key;
 

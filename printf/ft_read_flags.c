@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_is_flag(t_key *key, const char *format, int i)
+static	int	ft_is_flag(t_key *key, const char *format, int i)
 {
 	int r;
 
@@ -29,7 +29,7 @@ int	ft_is_flag(t_key *key, const char *format, int i)
 	return (r);
 }
 
-int	ft_is_width(t_key *key, const char *format, int i, va_list args)
+static	int	ft_is_width(t_key *key, const char *format, int i, va_list args)
 {
 	if (format[i] == '*')
 	{
@@ -47,7 +47,7 @@ int	ft_is_width(t_key *key, const char *format, int i, va_list args)
 	return (i);
 }
 
-int	ft_is_precision(t_key *key, const char *format, int i, va_list args)
+static	int	ft_is_precision(t_key *key, const char *format, int i, va_list args)
 {
 	if (format[i] == '*')
 	{
@@ -62,14 +62,17 @@ int	ft_is_precision(t_key *key, const char *format, int i, va_list args)
 	return (i);
 }
 
-int	ft_is_length(t_key *key, const char *format, int i)
+static	int	ft_is_length(t_key *key, const char *format, int i)
 {
 	int r;
 
 	if ((r = (format[i] == 'h')))
 	{
+		key->len->hh = key->len->h ? 1 : 0;
 		if ((r += (format[i + 1] == 'h')) == 2)
 			key->len->hh = 1;
+		else if (key->len->h)
+			key->len->h = 0;
 		else
 			key->len->h = 1;
 	}
@@ -87,7 +90,7 @@ int	ft_is_length(t_key *key, const char *format, int i)
 	return (i + r);
 }
 
-int	ft_is_key(va_list args, t_key *key, const char *format, int i)
+int			ft_is_key(va_list args, t_key *key, const char *format, int i)
 {
 	while (!key->s && format[i])
 	{

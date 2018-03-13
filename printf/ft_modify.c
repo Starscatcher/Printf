@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_modify_else(t_key *key)
+static	void	ft_modify_else(t_key *key)
 {
 	if (key->s == 'C' || key->s == 'c')
 	{
@@ -37,7 +37,7 @@ void	ft_modify_else(t_key *key)
 	}
 }
 
-void	ft_upper(t_key *key)
+static	void	ft_upper(t_key *key)
 {
 	int i;
 
@@ -52,7 +52,7 @@ void	ft_upper(t_key *key)
 	}
 }
 
-void	ft_is_n(va_list args, int ret)
+static	void	ft_is_n(va_list args, int ret)
 {
 	int *n;
 
@@ -60,13 +60,13 @@ void	ft_is_n(va_list args, int ret)
 	*n = ret;
 }
 
-int		ft_modify(t_key *key, va_list args, int ret)
+int				ft_modify(t_key *key, va_list args, int ret)
 {
 	ft_readtype(key, args);
 	ft_upper(key);
 	if (key->s == 'n')
 		ft_is_n(args, ret);
-	else if (ft_findin("DdioOuUxXp", key->s))
+	else if (ft_findin("DdioOuUxXpb", key->s))
 	{
 		if (key->s == 'p')
 			key->flags->g = 1;
@@ -75,7 +75,6 @@ int		ft_modify(t_key *key, va_list args, int ret)
 	}
 	else if (key->s == 's' && !key->len->l)
 	{
-		key->s = 's';
 		ft_charsize(key);
 		key->final = ft_strnew(key->finsize);
 		ft_modifychar(key);
