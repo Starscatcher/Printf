@@ -26,6 +26,10 @@ static	int	ft_is_flag(t_key *key, const char *format, int i)
 		key->flags->s = 1;
 	else if ((r = (format[i] == '#')))
 		key->flags->g = 1;
+	else if ((r = (format[i] == 'L')))
+		key->flags->l = 1;
+	else if ((r = (format[i] == 't')))
+		key->flags->t = 1;
 	return (r);
 }
 

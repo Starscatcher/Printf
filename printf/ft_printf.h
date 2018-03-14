@@ -15,9 +15,12 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <float.h>
+# include <limits.h>
 # include <stdarg.h>
 # include <stdio.h>
 # include <inttypes.h>
+# include <stddef.h>
 # include "../libft/libft.h"
 
 typedef struct		s_flags
@@ -27,6 +30,8 @@ typedef struct		s_flags
 	int p;
 	int s;
 	int g;
+	int l;
+	int t;
 }					t_flags;
 
 typedef struct		s_len
@@ -61,6 +66,7 @@ void				ft_float_size(t_key *key);
 void				ft_modifychar(t_key *key);
 void				ft_charsize(t_key *key);
 void				ft_print_char(t_key *key);
+long double			ft_fmake(int count, long double num1, t_key *key, int i);
 t_key				*ft_make_struct(void);
 void				ft_unicharprint(t_key *key);
 void				ft_bef_float(long double num, t_key *key);

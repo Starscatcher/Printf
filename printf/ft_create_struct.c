@@ -39,6 +39,8 @@ t_key			*ft_make_struct(void)
 	key->p = -1;
 	key->flags->g = 0;
 	key->flags->m = 0;
+	key->flags->l = 0;
+	key->flags->t = 0;
 	key->flags->p = 0;
 	key->flags->s = 0;
 	key->flags->z = 0;

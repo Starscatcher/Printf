@@ -14,7 +14,7 @@
 
 static	void	ft_di(t_key *key, va_list args)
 {
-	if (key->len->z)
+	if (key->len->z || key->flags->t)
 		key->res = ft_itoa_bss(va_arg(args, ssize_t), 10);
 	else if (key->len->j)
 		key->res = ft_itoa_bss(va_arg(args, intmax_t), 10);
@@ -36,23 +36,23 @@ static	void	ft_uox(t_key *key, va_list args)
 
 	if (ft_findin("xX", key->s))
 		s = 16;
-	else if (ft_findin("oO", key->s))
-		s = 8;
-	else if (key->s == 'b')
-		s = 2;
+	else if (ft_findin("oOb", key->s))
+		s = key->s == 'b' ? 2 : 8;
 	else
 		s = 10;
-	if (key->len->z == 1)
+	if (key->flags->t)
+		key->res = ft_itoa_bs((size_t)va_arg(args, ptrdiff_t), s);
+	else if (key->len->z)
 		key->res = ft_itoa_bs(va_arg(args, size_t), s);
-	else if (key->len->j == 1)
+	else if (key->len->j)
 		key->res = ft_itoa_bs(va_arg(args, uintmax_t), s);
-	else if (key->len->ll == 1)
+	else if (key->len->ll)
 		key->res = ft_itoa_bs(va_arg(args, unsigned long long int), s);
-	else if (key->len->l == 1)
+	else if (key->len->l)
 		key->res = ft_itoa_bs(va_arg(args, unsigned long int), s);
-	else if (key->len->h == 1)
+	else if (key->len->h)
 		key->res = ft_itoa_bs((unsigned short int)va_arg(args, int), s);
-	else if (key->len->hh == 1)
+	else if (key->len->hh)
 		key->res = ft_itoa_bs((unsigned char)va_arg(args, unsigned int), s);
 	else
 		key->res = ft_itoa_bs(va_arg(args, unsigned int), s);
@@ -77,5 +77,6 @@ void			ft_readtype(t_key *key, va_list args)
 	else if (key->s == 'S' || key->s == 's')
 		key->wres = va_arg(args, wchar_t*);
 	else if (key->s == 'f' || key->s == 'F')
-		ft_bef_float(va_arg(args, double), key);
+		!key->flags->l ? ft_bef_float(va_arg(args, double), key) : \
+		ft_bef_float(va_arg(args, long double), key);
 }

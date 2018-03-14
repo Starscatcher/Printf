@@ -12,10 +12,11 @@
 
 #include "ft_printf.h"
 
-static	void		ft_around(t_key *key, int *i, int *diff)
+static	void	ft_around(t_key *key, int *i, int *diff)
 {
 	char	*zero;
 
+	--*i;
 	while (key->res[*i] == '9' || key->res[*i] == '.')
 	{
 		if (key->res[*i] == '.')
@@ -31,14 +32,15 @@ static	void		ft_around(t_key *key, int *i, int *diff)
 			zero = ft_strjoin("0", key->res);
 			ft_strdel(&key->res);
 			key->res = zero;
-			key->finsize++;
+			key->fpsize++;
+			key->finsize += key->wsize > key->fpsize ? 0 : 1;
 		}
 	}
 	*diff = key->res[*i] - '0';
 	++*diff;
 }
 
-static	void		ft_prec_float(t_key *key, int i, long double num)
+static	void	ft_prec_float(t_key *key, int i, long double num)
 {
 	int	prec;
 	int val;
@@ -55,17 +57,19 @@ static	void		ft_prec_float(t_key *key, int i, long double num)
 		num -= val;
 		key->res[i++] = val + '0';
 	}
-	i--;
-	num *= 10;
-	diff = (int)num;
-	if (diff >= 5)
+	if ((diff = (int)(num * 10)) >= 5)
 	{
 		ft_around(key, &i, &diff);
 		key->res[i] = diff + '0';
+		if (key->res[1] == '-')
+		{
+			key->res[1] = key->res[0];
+			key->res[0] = '-';
+		}
 	}
 }
 
-static	void		ft_aft_float(long double num, t_key *key, int i)
+static	void	ft_aft_float(long double num, t_key *key, int i)
 {
 	int	prec;
 	int val;
@@ -80,50 +84,63 @@ static	void		ft_aft_float(long double num, t_key *key, int i)
 		if (val >= 5)
 			prec++;
 		key->res[i] = prec + '0';
+		if (key->flags->g)
+		{
+			key->res = ft_realloc(key->res, i + 1);
+			key->res[++i] = '.';
+			key->fpsize++;
+			key->finsize++;
+		}
 	}
 	else
 		ft_prec_float(key, i, num);
 }
 
-static	long double	ft_fmake(int count, long double num1, t_key *key, int i)
+static	void	ft_is_exist(long double n, int c, t_key *key, long double num1)
 {
-	int			elem;
+	int i;
 
-	while (count-- > 0)
+	i = 0;
+	if (n < 0)
 	{
-		num1 *= 10;
-		elem = (int)num1;
-		num1 -= elem;
-		key->res[i++] = elem + '0';
+		key->res[i++] = '-';
+		c--;
 	}
-	return (num1);
+	if (c < 312)
+	{
+		num1 = ft_fmake(c, num1, key, i);
+		ft_float_size(key);
+		key->final = ft_strnew(key->finsize);
+		ft_aft_float(num1, key, 0);
+		key->p = -1;
+	}
 }
 
-void				ft_bef_float(long double num, t_key *key)
+void			ft_bef_float(long double num, t_key *key)
 {
 	long double	num1;
 	int			count;
-	int			i;
 
 	count = num > 0 ? 0 : 1;
 	num1 = count != 1 ? num : -num;
-	i = 0;
 	while (num1 >= 1)
 	{
 		num1 /= 10;
-		count++;
+		if (count++ > 312)
+			break ;
 	}
-	key->res = ft_strnew(count);
-	if (num < 0)
+	if (count > 312 && key->s == 'f')
+		key->res = num < 0 ? ft_strdup("-inf") : ft_strdup("inf");
+	else if (count > 312 && key->s == 'F')
+		key->res = num < 0 ? ft_strdup("-INF") : ft_strdup("INF");
+	else
+		key->res = ft_strnew(count);
+	if (count < 312)
+		ft_is_exist(num, count, key, num1);
+	else
 	{
-		key->res[i++] = '-';
-		count--;
+		key->flags->z = 0;
+		key->final = ft_strnew(ft_size(key));
 	}
-	num1 = ft_fmake(count, num1, key, i);
-	ft_float_size(key);
-	key->final = ft_strnew(key->finsize);
-	ft_aft_float(num1, key, 0);
-	key->p = -1;
-	key->fpsize = key->wsize + ft_strlen(key->res);
 	ft_modifyint(key);
 }

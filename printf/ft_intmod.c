@@ -23,7 +23,6 @@ int				ft_size(t_key *key)
 	{
 		key->flags->s = 0;
 		key->flags->g = 0;
-		key->flags->z = 0;
 	}
 	if (key->res[0] == '0' && ft_findin("Oo", key->s) && key->p != 0)
 		key->flags->g = 0;
@@ -52,7 +51,7 @@ static	int		ft_flagsint(t_key *key, int i)
 		key->final[i++] = ' ';
 	if (ft_findin("XxOopb", key->s) && key->flags->g)
 	{
-		if (key->p < (int)ft_strlen(key->res) && ft_findin("oO", key->s))
+		if (key->p <= (int)ft_strlen(key->res) && ft_findin("oO", key->s))
 			key->final[i++] = '0';
 		if (ft_findin("Xxpb", key->s))
 		{
